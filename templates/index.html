@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/index.css">
+    <title>Wallpaper Site</title>
+</head>
+<body>
+
+    <header>
+        <h1>Wallpaper Site</h1>
+        <form action="{{ url_for('search') }}" method="GET" class="search-form">
+            <input type="text" name="query" placeholder="Search wallpapers">
+            <button type="submit">Search</button>
+        </form>
+    </header>
+    
+    <main>
+        {% if query %}
+            <h2 class="search-results">Search Results for "{{ query }}"</h2>
+        {% endif %}
+        {% for wallpaper in wallpapers %}
+            <div class="wallpaper">
+                <img src="{{ wallpaper.largeImageURL }}" alt="Wallpaper">
+                <div class="info">
+                    <p>Views: {{ wallpaper.views }}</p>
+                    <p>Likes: {{ wallpaper.likes }}</p>
+                    <p>Downloads: {{ wallpaper.downloads }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Wallpaper Site</p>
+    </footer>
+
+</body>
+</html>
