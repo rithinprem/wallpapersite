@@ -16,15 +16,12 @@ def extract(query):
                    "image_type":"photo",
                    "orientation":"horizontal"}
         response = requests.get(url,params)
-        data = response.json()
-        # wallpapers = []
-        # for i in data['hits']:
-        #     wallpapers.append({'url':i['largeImageURL']})   
+        data = response.json()  
         wallpapers=data['hits']
 
 @app.route('/')
 def index():
-    extract("nature")
+    extract("forest")
     return render_template('index.html', wallpapers=wallpapers)
 
 
